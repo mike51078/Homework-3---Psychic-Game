@@ -6,8 +6,8 @@ console.log(answer);
 var userGuess;
 var wins = 0;
 var losses = 0;
-var guessesLeft = 10;
-// var guessesSoFar = "";
+var guessesLeft = 11;
+var guessesSoFar = [];
 
 var directionsText = document.getElementById("directions-text");
 var winsText = document.getElementById("wins-text");
@@ -18,9 +18,9 @@ var guessesSoFarText = document.getElementById("guessesSoFar-text");
 
 document.onkeyup = function (event)  {
     var userGuess = event.key;
-    for (i=0; i<11; i++){
-        guessesSoFar = event.key[i];
-
+    for (i=0; i<10; i++){
+        guessesSoFar.push(event.key[i]);
+        guessesSoFarText.textContent = "Your guesses so far: " + guessesSoFar;
     }
 
     if (userGuess === answer) {
@@ -35,17 +35,16 @@ document.onkeyup = function (event)  {
         losses++;
         alert("All guesses gone.  Try again!");
         guessesLeft = 10;
+        guessesSoFar= [];
         var answer = alphabet[Math.floor(Math.random() * alphabet.length)];
     }
 
         winsText.textContent = "Wins: " + wins;
-        guessesLeft.textContent = "Guesses Left: " - guessesLeft;
+        guessesLeftText.textContent = "Guesses Left: " + guessesLeft;
         lossesText.textContent = "Losses: " + losses;
-        guessesSoFar.textContent = "Your guesses so far: ";
 
-};
+}
 
 
-// // for (i = 0; i<10; i++){
 
-// }
+
