@@ -8,7 +8,6 @@ var wins = 0;
 var losses = 0;
 var guessesLeft = 11;
 var guessesSoFar = [];
-
 var directionsText = document.getElementById("directions-text");
 var winsText = document.getElementById("wins-text");
 var lossesText = document.getElementById("losses-text");
@@ -18,13 +17,16 @@ var guessesSoFarText = document.getElementById("guessesSoFar-text");
 
 document.onkeyup = function (event)  {
     var userGuess = event.key;
-    for (i=0; i<10; i++){
-        guessesSoFar.push(event.key[i]);
+        guessesSoFar.push(event.key);
         guessesSoFarText.textContent = "Your guesses so far: " + guessesSoFar;
-    }
 
     if (userGuess === answer) {
         wins++;
+        guessesLeft = 10;
+        guessesSoFar = [];
+        alert("Great Job!  Can you do it again?");
+        answer = alphabet[Math.floor(Math.random() * alphabet.length)];
+        console.log(answer);
     }
     
     if (userGuess !== answer) {
@@ -33,10 +35,11 @@ document.onkeyup = function (event)  {
 
     if (guessesLeft === 0) {
         losses++;
-        alert("All guesses gone.  Try again!");
         guessesLeft = 10;
-        guessesSoFar= [];
-        var answer = alphabet[Math.floor(Math.random() * alphabet.length)];
+        guessesSoFar = [];
+        alert("All guesses gone.  Game over.  Try again!");
+        answer = alphabet[Math.floor(Math.random() * alphabet.length)];
+        console.log(answer);
     }
 
         winsText.textContent = "Wins: " + wins;
@@ -44,7 +47,4 @@ document.onkeyup = function (event)  {
         lossesText.textContent = "Losses: " + losses;
 
 }
-
-
-
 
